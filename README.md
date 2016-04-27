@@ -1,4 +1,5 @@
-# swagger-java-client
+# football.wemedia.apitest
+中国足球网新闻api测试
 
 ## Requirements
 
@@ -24,8 +25,8 @@ After the client library is installed/deployed, you can use it in your Maven pro
 
 ```xml
 <dependency>
-    <groupId>io.swagger</groupId>
-    <artifactId>swagger-java-client</artifactId>
+    <groupId>com.lifeix</groupId>
+    <artifactId>lifeix-football-wemedia-apitest</artifactId>
     <version>1.0.0</version>
     <scope>compile</scope>
 </dependency>
