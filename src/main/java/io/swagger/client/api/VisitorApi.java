@@ -9,10 +9,9 @@ import io.swagger.client.Pair;
 
 import io.swagger.client.model.Category;
 import io.swagger.client.model.Comment;
-import io.swagger.client.model.TLCompetition;
 import io.swagger.client.model.Post;
-import io.swagger.client.model.TLClub;
-import io.swagger.client.model.TLPlayer;
+import io.swagger.client.model.TLCompetition;
+import io.swagger.client.model.Like;
 import io.swagger.client.model.TLTeam;
 import io.swagger.client.model.User;
 
@@ -21,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T02:16:00.506Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T08:03:38.486Z")
 public class VisitorApi {
   private ApiClient apiClient;
 
@@ -207,55 +206,6 @@ public class VisitorApi {
   }
   
   /**
-   * \u6839\u636E\u641C\u7D22\u6761\u4EF6\u83B7\u53D6\u8D5B\u4E8B\u5217\u8868
-   * \u83B7\u5F97\u8D5B\u4E8B\u4FE1\u606F
-   * @param apiKey key (required)
-   * @return List<TLCompetition>
-   * @throws ApiException if fails to make API call
-   */
-  public List<TLCompetition> getCompetitionList(String apiKey) throws ApiException {
-    Object localVarPostBody = null;
-    
-    // verify the required parameter 'apiKey' is set
-    if (apiKey == null) {
-      throw new ApiException(400, "Missing the required parameter 'apiKey' when calling getCompetitionList");
-    }
-    
-    // create path and map variables
-    String localVarPath = "/timeline/tlcompetitions".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    
-
-    if (apiKey != null)
-      localVarHeaderParams.put("apiKey", apiClient.parameterToString(apiKey));
-    
-
-    
-
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-
-    final String[] localVarContentTypes = {
-      "application/json"
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-
-    String[] localVarAuthNames = new String[] {  };
-
-    
-    GenericType<List<TLCompetition>> localVarReturnType = new GenericType<List<TLCompetition>>() {};
-    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-    
-  }
-  
-  /**
    * \u6839\u636EId\u83B7\u53D6Post\u8BE6\u60C5
    * \u8FD4\u56DEPost\u8BE6\u60C5\u5BF9\u8C61
    * @param apiKey key (required)
@@ -388,22 +338,22 @@ public class VisitorApi {
   }
   
   /**
-   * \u83B7\u5F97\u4FF1\u4E50\u90E8\u5217\u8868
-   * \u83B7\u5F97\u4FF1\u4E50\u90E8\u5217\u8868
+   * \u6839\u636E\u641C\u7D22\u6761\u4EF6\u83B7\u53D6\u8D5B\u4E8B\u5217\u8868
+   * \u83B7\u5F97\u8D5B\u4E8B\u4FE1\u606F
    * @param apiKey key (required)
-   * @return List<TLClub>
+   * @return List<TLCompetition>
    * @throws ApiException if fails to make API call
    */
-  public List<TLClub> getTLClubList(String apiKey) throws ApiException {
+  public List<TLCompetition> getTLCompetitions(String apiKey) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'apiKey' is set
     if (apiKey == null) {
-      throw new ApiException(400, "Missing the required parameter 'apiKey' when calling getTLClubList");
+      throw new ApiException(400, "Missing the required parameter 'apiKey' when calling getTLCompetitions");
     }
     
     // create path and map variables
-    String localVarPath = "/timeline/tlclubs".replaceAll("\\{format\\}","json");
+    String localVarPath = "/timeline/tlcompetitions".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -431,35 +381,28 @@ public class VisitorApi {
     String[] localVarAuthNames = new String[] {  };
 
     
-    GenericType<List<TLClub>> localVarReturnType = new GenericType<List<TLClub>>() {};
+    GenericType<List<TLCompetition>> localVarReturnType = new GenericType<List<TLCompetition>>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
     
   }
   
   /**
-   * \u83B7\u53D6\u67D0\u4E00Team\u4E0B\u7403\u5458\u5217\u8868
-   * \u83B7\u53D6\u67D0\u4E00Team\u4E0B\u7403\u5458\u5217\u8868
+   * \u83B7\u5F97\u56FD\u8DB3\u7403\u5458\u70B9\u8D5E\u4FE1\u606F
+   * \u83B7\u5F97\u56FD\u8DB3\u7403\u5458\u70B9\u8D5E\u4FE1\u606F
    * @param apiKey key (required)
-   * @param tlteamId \u7403\u961FId (required)
-   * @return List<TLPlayer>
+   * @return List<Like>
    * @throws ApiException if fails to make API call
    */
-  public List<TLPlayer> getTLPlayerList(String apiKey, String tlteamId) throws ApiException {
+  public List<Like> getTLPlayerLikes(String apiKey) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'apiKey' is set
     if (apiKey == null) {
-      throw new ApiException(400, "Missing the required parameter 'apiKey' when calling getTLPlayerList");
-    }
-    
-    // verify the required parameter 'tlteamId' is set
-    if (tlteamId == null) {
-      throw new ApiException(400, "Missing the required parameter 'tlteamId' when calling getTLPlayerList");
+      throw new ApiException(400, "Missing the required parameter 'apiKey' when calling getTLPlayerLikes");
     }
     
     // create path and map variables
-    String localVarPath = "/timeline/tlteams/{tlteamId}/tlplayers".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "tlteamId" + "\\}", apiClient.escapeString(tlteamId.toString()));
+    String localVarPath = "/likes/timeline".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -487,7 +430,7 @@ public class VisitorApi {
     String[] localVarAuthNames = new String[] {  };
 
     
-    GenericType<List<TLPlayer>> localVarReturnType = new GenericType<List<TLPlayer>>() {};
+    GenericType<List<Like>> localVarReturnType = new GenericType<List<Like>>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
     
   }

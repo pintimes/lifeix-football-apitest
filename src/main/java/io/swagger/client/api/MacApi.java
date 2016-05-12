@@ -7,22 +7,22 @@ import io.swagger.client.ApiClient;
 import io.swagger.client.Configuration;
 import io.swagger.client.Pair;
 
-import io.swagger.client.model.TLPlayer;
+import io.swagger.client.model.Like;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T02:16:00.506Z")
-public class TlplayersApi {
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T08:03:38.486Z")
+public class MacApi {
   private ApiClient apiClient;
 
-  public TlplayersApi() {
+  public MacApi() {
     this(Configuration.getDefaultApiClient());
   }
 
-  public TlplayersApi(ApiClient apiClient) {
+  public MacApi(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
 
@@ -36,29 +36,28 @@ public class TlplayersApi {
 
   
   /**
-   * \u83B7\u53D6\u67D0\u4E00Team\u4E0B\u7403\u5458\u5217\u8868
-   * \u83B7\u53D6\u67D0\u4E00Team\u4E0B\u7403\u5458\u5217\u8868
+   * \u5BF9\u67D0\u4E00\u4E2A\u7403\u5458\u70B9\u8D5E
+   * \u4E00\u4E2AMac\u5730\u5740\u53EA\u80FD\u5BF9\u4E00\u4E2A\u7403\u5458\u70B9\u8D5E\u4E00\u6B21
    * @param apiKey key (required)
-   * @param tlteamId \u7403\u961FId (required)
-   * @return List<TLPlayer>
+   * @param playerId \u7403\u5458Id (required)
+   * @return Like
    * @throws ApiException if fails to make API call
    */
-  public List<TLPlayer> getTLPlayerList(String apiKey, String tlteamId) throws ApiException {
+  public Like likeTLPlayer(String apiKey, String playerId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'apiKey' is set
     if (apiKey == null) {
-      throw new ApiException(400, "Missing the required parameter 'apiKey' when calling getTLPlayerList");
+      throw new ApiException(400, "Missing the required parameter 'apiKey' when calling likeTLPlayer");
     }
     
-    // verify the required parameter 'tlteamId' is set
-    if (tlteamId == null) {
-      throw new ApiException(400, "Missing the required parameter 'tlteamId' when calling getTLPlayerList");
+    // verify the required parameter 'playerId' is set
+    if (playerId == null) {
+      throw new ApiException(400, "Missing the required parameter 'playerId' when calling likeTLPlayer");
     }
     
     // create path and map variables
-    String localVarPath = "/timeline/tlteams/{tlteamId}/tlplayers".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "tlteamId" + "\\}", apiClient.escapeString(tlteamId.toString()));
+    String localVarPath = "/likes/timeline".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -71,6 +70,8 @@ public class TlplayersApi {
       localVarHeaderParams.put("apiKey", apiClient.parameterToString(apiKey));
     
 
+    if (playerId != null)
+      localVarFormParams.put("playerId", playerId);
     
 
     final String[] localVarAccepts = {
@@ -86,8 +87,8 @@ public class TlplayersApi {
     String[] localVarAuthNames = new String[] {  };
 
     
-    GenericType<List<TLPlayer>> localVarReturnType = new GenericType<List<TLPlayer>>() {};
-    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+    GenericType<Like> localVarReturnType = new GenericType<Like>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
     
   }
   

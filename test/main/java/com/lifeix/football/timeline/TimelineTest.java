@@ -23,14 +23,23 @@ public class TimelineTest {
 	
 	@Test
 	public void test() throws ApiException{
-		List<TLCompetition> competitionList = tlcompetitionApi.getCompetitionList(apiKey);
+		/**
+		 * 获得12场比赛信息
+		 */
+		List<TLCompetition> competitionList = tlcompetitionApi.getTLCompetitions(apiKey);
 		Assert.assertNotNull(competitionList);
+		for (TLCompetition tlCompetition : competitionList) {
+		}
 		
-		//获得国家队ID
+		/**
+		 * 获得国家队ID
+		 */
 		String tlteamId = null;
 		TLTeam tlTeam = tlteamApi.getTLTeam(apiKey, tlteamId);
 		Assert.assertNotNull(tlTeam);
 		Assert.assertNotNull(tlTeam.getPlayers());
+		
+		
 	}
 	
 	

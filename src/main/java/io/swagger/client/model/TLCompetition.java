@@ -14,7 +14,7 @@ import java.util.Date;
  **/
 
 @ApiModel(description = "12\u5F3A\u8D5B\u5BF9\u8C61")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T02:16:00.506Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T08:03:38.486Z")
 public class TLCompetition   {
   
   private TLTeam hostTeam = null;
@@ -26,6 +26,7 @@ public class TLCompetition   {
   private String id = null;
   private Date time = null;
   private String place = null;
+  private String poster = null;
 
   
   /**
@@ -153,14 +154,14 @@ public class TLCompetition   {
 
   
   /**
-   * \u6BD4\u8D5B\u65F6\u95F4:2016-02-01 12:00:00
+   * \u6BD4\u8D5B\u65F6\u95F4
    **/
   public TLCompetition time(Date time) {
     this.time = time;
     return this;
   }
   
-  @ApiModelProperty(example = "null", value = "\u6BD4\u8D5B\u65F6\u95F4:2016-02-01 12:00:00")
+  @ApiModelProperty(example = "null", value = "\u6BD4\u8D5B\u65F6\u95F4")
   @JsonProperty("time")
   public Date getTime() {
     return time;
@@ -188,6 +189,24 @@ public class TLCompetition   {
   }
 
   
+  /**
+   * \u6D77\u62A5\uFF1A\u56FE\u7247\u5730\u5740
+   **/
+  public TLCompetition poster(String poster) {
+    this.poster = poster;
+    return this;
+  }
+  
+  @ApiModelProperty(example = "null", value = "\u6D77\u62A5\uFF1A\u56FE\u7247\u5730\u5740")
+  @JsonProperty("poster")
+  public String getPoster() {
+    return poster;
+  }
+  public void setPoster(String poster) {
+    this.poster = poster;
+  }
+
+  
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -206,12 +225,13 @@ public class TLCompetition   {
         Objects.equals(this.guestTeam, tLCompetition.guestTeam) &&
         Objects.equals(this.id, tLCompetition.id) &&
         Objects.equals(this.time, tLCompetition.time) &&
-        Objects.equals(this.place, tLCompetition.place);
+        Objects.equals(this.place, tLCompetition.place) &&
+        Objects.equals(this.poster, tLCompetition.poster);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(hostTeam, guestScore, hostScore, lal, name, guestTeam, id, time, place);
+    return Objects.hash(hostTeam, guestScore, hostScore, lal, name, guestTeam, id, time, place, poster);
   }
 
   @Override
@@ -228,6 +248,7 @@ public class TLCompetition   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    time: ").append(toIndentedString(time)).append("\n");
     sb.append("    place: ").append(toIndentedString(place)).append("\n");
+    sb.append("    poster: ").append(toIndentedString(poster)).append("\n");
     sb.append("}");
     return sb.toString();
   }

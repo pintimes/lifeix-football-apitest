@@ -15,7 +15,7 @@ import java.util.List;
  **/
 
 @ApiModel(description = "\u7C7B\u76EE")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T02:16:00.506Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T08:03:38.486Z")
 public class Category   {
   
   private String fId = null;

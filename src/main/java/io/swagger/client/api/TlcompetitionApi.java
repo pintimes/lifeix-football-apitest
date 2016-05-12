@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T02:16:00.506Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T08:03:38.486Z")
 public class TlcompetitionApi {
   private ApiClient apiClient;
 
@@ -42,12 +42,12 @@ public class TlcompetitionApi {
    * @return List<TLCompetition>
    * @throws ApiException if fails to make API call
    */
-  public List<TLCompetition> getCompetitionList(String apiKey) throws ApiException {
+  public List<TLCompetition> getTLCompetitions(String apiKey) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'apiKey' is set
     if (apiKey == null) {
-      throw new ApiException(400, "Missing the required parameter 'apiKey' when calling getCompetitionList");
+      throw new ApiException(400, "Missing the required parameter 'apiKey' when calling getTLCompetitions");
     }
     
     // create path and map variables

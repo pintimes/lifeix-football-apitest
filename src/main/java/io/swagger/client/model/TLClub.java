@@ -12,12 +12,12 @@ import io.swagger.annotations.ApiModelProperty;
  **/
 
 @ApiModel(description = "\u4FF1\u4E50\u90E8")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T02:16:00.506Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T08:03:38.486Z")
 public class TLClub   {
   
   private String name = null;
+  private String icon = null;
   private String id = null;
-  private String iconUrl = null;
 
   
   /**
@@ -39,6 +39,24 @@ public class TLClub   {
 
   
   /**
+   * \u4FF1\u4E50\u90E8\u56FE\u7247\u5730\u5740
+   **/
+  public TLClub icon(String icon) {
+    this.icon = icon;
+    return this;
+  }
+  
+  @ApiModelProperty(example = "null", value = "\u4FF1\u4E50\u90E8\u56FE\u7247\u5730\u5740")
+  @JsonProperty("icon")
+  public String getIcon() {
+    return icon;
+  }
+  public void setIcon(String icon) {
+    this.icon = icon;
+  }
+
+  
+  /**
    * id
    **/
   public TLClub id(String id) {
@@ -56,24 +74,6 @@ public class TLClub   {
   }
 
   
-  /**
-   * \u4FF1\u4E50\u90E8\u56FE\u7247\u5730\u5740
-   **/
-  public TLClub iconUrl(String iconUrl) {
-    this.iconUrl = iconUrl;
-    return this;
-  }
-  
-  @ApiModelProperty(example = "null", value = "\u4FF1\u4E50\u90E8\u56FE\u7247\u5730\u5740")
-  @JsonProperty("iconUrl")
-  public String getIconUrl() {
-    return iconUrl;
-  }
-  public void setIconUrl(String iconUrl) {
-    this.iconUrl = iconUrl;
-  }
-
-  
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -85,13 +85,13 @@ public class TLClub   {
     }
     TLClub tLClub = (TLClub) o;
     return Objects.equals(this.name, tLClub.name) &&
-        Objects.equals(this.id, tLClub.id) &&
-        Objects.equals(this.iconUrl, tLClub.iconUrl);
+        Objects.equals(this.icon, tLClub.icon) &&
+        Objects.equals(this.id, tLClub.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, id, iconUrl);
+    return Objects.hash(name, icon, id);
   }
 
   @Override
@@ -100,8 +100,8 @@ public class TLClub   {
     sb.append("class TLClub {\n");
     
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    iconUrl: ").append(toIndentedString(iconUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }
