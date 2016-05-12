@@ -16,7 +16,7 @@ import java.util.List;
  **/
 
 @ApiModel(description = "\u5E16\u5B50")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-09T07:53:17.665Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T02:16:00.506Z")
 public class Post   {
   
   private Integer commentNum = null;

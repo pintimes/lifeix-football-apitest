@@ -7,6 +7,7 @@ import io.swagger.client.ApiClient;
 import io.swagger.client.Configuration;
 import io.swagger.client.Pair;
 
+import io.swagger.client.model.TLClub;
 import io.swagger.client.model.TLTeam;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-09T07:53:17.665Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T02:16:00.506Z")
 public class TlteamApi {
   private ApiClient apiClient;
 
@@ -36,18 +37,123 @@ public class TlteamApi {
 
   
   /**
-   * \u6839\u636E\u641C\u7D22\u6761\u4EF6\u83B7\u53D6\u7403\u961F\u5217\u8868
+   * \u83B7\u5F97\u4FF1\u4E50\u90E8\u5217\u8868
+   * \u83B7\u5F97\u4FF1\u4E50\u90E8\u5217\u8868
+   * @param apiKey key (required)
+   * @return List<TLClub>
+   * @throws ApiException if fails to make API call
+   */
+  public List<TLClub> getTLClubList(String apiKey) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'apiKey' is set
+    if (apiKey == null) {
+      throw new ApiException(400, "Missing the required parameter 'apiKey' when calling getTLClubList");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/timeline/tlclubs".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    
+
+    if (apiKey != null)
+      localVarHeaderParams.put("apiKey", apiClient.parameterToString(apiKey));
+    
+
+    
+
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] {  };
+
+    
+    GenericType<List<TLClub>> localVarReturnType = new GenericType<List<TLClub>>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+    
+  }
+  
+  /**
+   * \u83B7\u5F97\u7403\u961F\u4FE1\u606F
+   * \u83B7\u5F97\u7403\u961F\u4FE1\u606F
+   * @param apiKey key (required)
+   * @param tlteamId \u7403\u961FId (required)
+   * @return TLTeam
+   * @throws ApiException if fails to make API call
+   */
+  public TLTeam getTLTeam(String apiKey, String tlteamId) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'apiKey' is set
+    if (apiKey == null) {
+      throw new ApiException(400, "Missing the required parameter 'apiKey' when calling getTLTeam");
+    }
+    
+    // verify the required parameter 'tlteamId' is set
+    if (tlteamId == null) {
+      throw new ApiException(400, "Missing the required parameter 'tlteamId' when calling getTLTeam");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/timeline/tlteams/{tlteamId}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "tlteamId" + "\\}", apiClient.escapeString(tlteamId.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    
+
+    if (apiKey != null)
+      localVarHeaderParams.put("apiKey", apiClient.parameterToString(apiKey));
+    
+
+    
+
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] {  };
+
+    
+    GenericType<TLTeam> localVarReturnType = new GenericType<TLTeam>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+    
+  }
+  
+  /**
+   * \u83B7\u5F97\u7403\u961F\u4FE1\u606F
    * \u83B7\u5F97\u7403\u961F\u4FE1\u606F
    * @param apiKey key (required)
    * @return List<TLTeam>
    * @throws ApiException if fails to make API call
    */
-  public List<TLTeam> getTeamList(String apiKey) throws ApiException {
+  public List<TLTeam> getTLTeamList(String apiKey) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'apiKey' is set
     if (apiKey == null) {
-      throw new ApiException(400, "Missing the required parameter 'apiKey' when calling getTeamList");
+      throw new ApiException(400, "Missing the required parameter 'apiKey' when calling getTLTeamList");
     }
     
     // create path and map variables
