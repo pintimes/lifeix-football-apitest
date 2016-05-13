@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.lifeix.football.BaseTest;
-
 import io.swagger.client.ApiException;
 import io.swagger.client.api.AdminsApi;
 import io.swagger.client.model.Admin;
@@ -31,7 +29,7 @@ public class AdminTest {
 		/**
 		 * 获得Admins列表
 		 */
-		List<Admin> adminList = adminsApi.getAdminList(BaseTest.getAdminAPIKey());
+		List<Admin> adminList = adminsApi.getAdminList(loginResult.getKey());
 		Assert.assertNotNull(adminList);
 		boolean exist = false;
 		for (Admin temp : adminList) {
