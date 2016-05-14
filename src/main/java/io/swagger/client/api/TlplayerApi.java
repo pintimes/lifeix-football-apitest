@@ -7,7 +7,7 @@ import io.swagger.client.ApiClient;
 import io.swagger.client.Configuration;
 import io.swagger.client.Pair;
 
-import io.swagger.client.model.TLCompetition;
+import io.swagger.client.model.TLPlayer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,14 +15,14 @@ import java.util.List;
 import java.util.Map;
 
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-13T11:51:50.380Z")
-public class TlcompetitionApi {
+public class TlplayerApi {
   private ApiClient apiClient;
 
-  public TlcompetitionApi() {
+  public TlplayerApi() {
     this(Configuration.getDefaultApiClient());
   }
 
-  public TlcompetitionApi(ApiClient apiClient) {
+  public TlplayerApi(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
 
@@ -36,22 +36,29 @@ public class TlcompetitionApi {
 
   
   /**
-   * \u6839\u636E\u641C\u7D22\u6761\u4EF6\u83B7\u53D6\u8D5B\u4E8B\u5217\u8868
-   * \u83B7\u5F97\u8D5B\u4E8B\u4FE1\u606F
+   * \u83B7\u5F97\u7403\u5458\u4FE1\u606F
+   * \u67E5\u770B\u7403\u5458\u4FE1\u606F
    * @param key key (required)
-   * @return List<TLCompetition>
+   * @param tlplayerId \u7403\u5458Id (required)
+   * @return TLPlayer
    * @throws ApiException if fails to make API call
    */
-  public List<TLCompetition> getCompetitionList(String key) throws ApiException {
+  public TLPlayer getTLPlayer(String key, String tlplayerId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'key' is set
     if (key == null) {
-      throw new ApiException(400, "Missing the required parameter 'key' when calling getCompetitionList");
+      throw new ApiException(400, "Missing the required parameter 'key' when calling getTLPlayer");
+    }
+    
+    // verify the required parameter 'tlplayerId' is set
+    if (tlplayerId == null) {
+      throw new ApiException(400, "Missing the required parameter 'tlplayerId' when calling getTLPlayer");
     }
     
     // create path and map variables
-    String localVarPath = "/timeline/tlcompetitions".replaceAll("\\{format\\}","json");
+    String localVarPath = "/timeline/tlplayers/{tlplayerId}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "tlplayerId" + "\\}", apiClient.escapeString(tlplayerId.toString()));
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -79,7 +86,7 @@ public class TlcompetitionApi {
     String[] localVarAuthNames = new String[] {  };
 
     
-    GenericType<List<TLCompetition>> localVarReturnType = new GenericType<List<TLCompetition>>() {};
+    GenericType<TLPlayer> localVarReturnType = new GenericType<TLPlayer>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
     
   }

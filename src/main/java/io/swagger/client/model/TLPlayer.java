@@ -4,7 +4,6 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.TLClub;
 
 
 
@@ -13,7 +12,7 @@ import io.swagger.client.model.TLClub;
  **/
 
 @ApiModel(description = "\u961F\u5458")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T08:03:38.486Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-13T11:51:50.380Z")
 public class TLPlayer   {
   
   private Integer number = null;
@@ -23,7 +22,6 @@ public class TLPlayer   {
   private String birthplace = null;
   private String avatarUrl = null;
   private String name = null;
-  private TLClub club = null;
   private String id = null;
   private String position = null;
   private String team = null;
@@ -157,23 +155,6 @@ public class TLPlayer   {
 
   
   /**
-   **/
-  public TLPlayer club(TLClub club) {
-    this.club = club;
-    return this;
-  }
-  
-  @ApiModelProperty(example = "null", value = "")
-  @JsonProperty("club")
-  public TLClub getClub() {
-    return club;
-  }
-  public void setClub(TLClub club) {
-    this.club = club;
-  }
-
-  
-  /**
    * id
    **/
   public TLPlayer id(String id) {
@@ -262,7 +243,6 @@ public class TLPlayer   {
         Objects.equals(this.birthplace, tLPlayer.birthplace) &&
         Objects.equals(this.avatarUrl, tLPlayer.avatarUrl) &&
         Objects.equals(this.name, tLPlayer.name) &&
-        Objects.equals(this.club, tLPlayer.club) &&
         Objects.equals(this.id, tLPlayer.id) &&
         Objects.equals(this.position, tLPlayer.position) &&
         Objects.equals(this.team, tLPlayer.team) &&
@@ -271,7 +251,7 @@ public class TLPlayer   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(number, score, country, showNum, birthplace, avatarUrl, name, club, id, position, team, likeNum);
+    return Objects.hash(number, score, country, showNum, birthplace, avatarUrl, name, id, position, team, likeNum);
   }
 
   @Override
@@ -286,7 +266,6 @@ public class TLPlayer   {
     sb.append("    birthplace: ").append(toIndentedString(birthplace)).append("\n");
     sb.append("    avatarUrl: ").append(toIndentedString(avatarUrl)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    club: ").append(toIndentedString(club)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("    team: ").append(toIndentedString(team)).append("\n");

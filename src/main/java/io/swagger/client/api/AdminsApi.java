@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T08:03:38.486Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-13T11:51:50.380Z")
 public class AdminsApi {
   private ApiClient apiClient;
 
@@ -38,16 +38,16 @@ public class AdminsApi {
   /**
    * \u83B7\u5F97Admin\u5217\u8868
    * \u8FD4\u56DE\u6240\u6709\u7684\u7BA1\u7406\u5458
-   * @param apiKey key (required)
+   * @param key key (required)
    * @return List<Admin>
    * @throws ApiException if fails to make API call
    */
-  public List<Admin> getAdminList(String apiKey) throws ApiException {
+  public List<Admin> getAdminList(String key) throws ApiException {
     Object localVarPostBody = null;
     
-    // verify the required parameter 'apiKey' is set
-    if (apiKey == null) {
-      throw new ApiException(400, "Missing the required parameter 'apiKey' when calling getAdminList");
+    // verify the required parameter 'key' is set
+    if (key == null) {
+      throw new ApiException(400, "Missing the required parameter 'key' when calling getAdminList");
     }
     
     // create path and map variables
@@ -60,8 +60,8 @@ public class AdminsApi {
 
     
 
-    if (apiKey != null)
-      localVarHeaderParams.put("apiKey", apiClient.parameterToString(apiKey));
+    if (key != null)
+      localVarHeaderParams.put("key", apiClient.parameterToString(key));
     
 
     

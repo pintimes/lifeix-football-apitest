@@ -15,24 +15,42 @@ import java.util.List;
  **/
 
 @ApiModel(description = "\u53C2\u8D5B\u961F")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T08:03:38.486Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-13T11:51:50.380Z")
 public class TLTeam   {
   
+  private String avatarUrl = null;
   private List<TLPlayer> players = new ArrayList<TLPlayer>();
   private String name = null;
-  private String icon = null;
   private String id = null;
 
   
   /**
-   * \u7403\u5458
+   * \u5934\u50CF\u5730\u5740
+   **/
+  public TLTeam avatarUrl(String avatarUrl) {
+    this.avatarUrl = avatarUrl;
+    return this;
+  }
+  
+  @ApiModelProperty(example = "null", value = "\u5934\u50CF\u5730\u5740")
+  @JsonProperty("avatarUrl")
+  public String getAvatarUrl() {
+    return avatarUrl;
+  }
+  public void setAvatarUrl(String avatarUrl) {
+    this.avatarUrl = avatarUrl;
+  }
+
+  
+  /**
+   * \u5BA2\u573A\u7403\u961F
    **/
   public TLTeam players(List<TLPlayer> players) {
     this.players = players;
     return this;
   }
   
-  @ApiModelProperty(example = "null", value = "\u7403\u5458")
+  @ApiModelProperty(example = "null", value = "\u5BA2\u573A\u7403\u961F")
   @JsonProperty("players")
   public List<TLPlayer> getPlayers() {
     return players;
@@ -57,24 +75,6 @@ public class TLTeam   {
   }
   public void setName(String name) {
     this.name = name;
-  }
-
-  
-  /**
-   * \u5934\u50CF\u5730\u5740
-   **/
-  public TLTeam icon(String icon) {
-    this.icon = icon;
-    return this;
-  }
-  
-  @ApiModelProperty(example = "null", value = "\u5934\u50CF\u5730\u5740")
-  @JsonProperty("icon")
-  public String getIcon() {
-    return icon;
-  }
-  public void setIcon(String icon) {
-    this.icon = icon;
   }
 
   
@@ -106,15 +106,15 @@ public class TLTeam   {
       return false;
     }
     TLTeam tLTeam = (TLTeam) o;
-    return Objects.equals(this.players, tLTeam.players) &&
+    return Objects.equals(this.avatarUrl, tLTeam.avatarUrl) &&
+        Objects.equals(this.players, tLTeam.players) &&
         Objects.equals(this.name, tLTeam.name) &&
-        Objects.equals(this.icon, tLTeam.icon) &&
         Objects.equals(this.id, tLTeam.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(players, name, icon, id);
+    return Objects.hash(avatarUrl, players, name, id);
   }
 
   @Override
@@ -122,9 +122,9 @@ public class TLTeam   {
     StringBuilder sb = new StringBuilder();
     sb.append("class TLTeam {\n");
     
+    sb.append("    avatarUrl: ").append(toIndentedString(avatarUrl)).append("\n");
     sb.append("    players: ").append(toIndentedString(players)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();

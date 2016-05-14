@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T08:03:38.486Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-13T11:51:50.380Z")
 public class AuthorsApi {
   private ApiClient apiClient;
 
@@ -36,21 +36,24 @@ public class AuthorsApi {
 
   
   /**
-   * \u83B7\u5F97Authors\u5217\u8868
-   * \u67E5\u770BPost\u7684\u8BC4\u8BBA\u5217\u8868
-   * @param apiKey key (required)
-   * @param limit \u4E00\u9875\u663E\u793A\u6570\u76EE\uFF0C\u5982\u679C\u4E0D\u4F20\u9ED8\u8BA4=10 (optional, default to 10)
-   * @param orderBy \u6839\u636E\u54EA\u4E00\u4E2A\u5B57\u6BB5\u8FDB\u884C\u6392\u5E8F\uFF1Aid,name (optional, default to name)
-   * @param isAsc \u662F\u5426\u662F\u5347\u5E8F\uFF0C\u9ED8\u8BA4\u662F\u5347\u5E8F (optional, default to false)
-   * @return List<Author>
+   * \u521B\u5EFA\u4E00\u4E2AAuthor
+   * \u521B\u5EFA\u4E00\u4E2AAuthor,\u5176\u4E2Dname\u5FC5\u586B
+   * @param key key (required)
+   * @param author \u4F5C\u8005 (required)
+   * @return Author
    * @throws ApiException if fails to make API call
    */
-  public List<Author> getAuthors(String apiKey, Integer limit, String orderBy, Boolean isAsc) throws ApiException {
-    Object localVarPostBody = null;
+  public Author addAuthor(String key, Author author) throws ApiException {
+    Object localVarPostBody = author;
     
-    // verify the required parameter 'apiKey' is set
-    if (apiKey == null) {
-      throw new ApiException(400, "Missing the required parameter 'apiKey' when calling getAuthors");
+    // verify the required parameter 'key' is set
+    if (key == null) {
+      throw new ApiException(400, "Missing the required parameter 'key' when calling addAuthor");
+    }
+    
+    // verify the required parameter 'author' is set
+    if (author == null) {
+      throw new ApiException(400, "Missing the required parameter 'author' when calling addAuthor");
     }
     
     // create path and map variables
@@ -62,15 +65,58 @@ public class AuthorsApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "limit", limit));
-    
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "orderBy", orderBy));
-    
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "isAsc", isAsc));
+
+    if (key != null)
+      localVarHeaderParams.put("key", apiClient.parameterToString(key));
     
 
-    if (apiKey != null)
-      localVarHeaderParams.put("apiKey", apiClient.parameterToString(apiKey));
+    
+
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] {  };
+
+    
+    GenericType<Author> localVarReturnType = new GenericType<Author>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+    
+  }
+  
+  /**
+   * \u83B7\u5F97Authors\u5217\u8868
+   * \u67E5\u770BPost\u7684\u8BC4\u8BBA\u5217\u8868
+   * @param key key (required)
+   * @return List<Author>
+   * @throws ApiException if fails to make API call
+   */
+  public List<Author> getAuthors(String key) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'key' is set
+    if (key == null) {
+      throw new ApiException(400, "Missing the required parameter 'key' when calling getAuthors");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/wemedia/authors".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    
+
+    if (key != null)
+      localVarHeaderParams.put("key", apiClient.parameterToString(key));
     
 
     

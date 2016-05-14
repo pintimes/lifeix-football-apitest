@@ -7,7 +7,6 @@ import io.swagger.client.ApiClient;
 import io.swagger.client.Configuration;
 import io.swagger.client.Pair;
 
-import io.swagger.client.model.TLCompetition;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,14 +14,14 @@ import java.util.List;
 import java.util.Map;
 
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-13T11:51:50.380Z")
-public class TlcompetitionApi {
+public class RedisApi {
   private ApiClient apiClient;
 
-  public TlcompetitionApi() {
+  public RedisApi() {
     this(Configuration.getDefaultApiClient());
   }
 
-  public TlcompetitionApi(ApiClient apiClient) {
+  public RedisApi(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
 
@@ -36,28 +35,38 @@ public class TlcompetitionApi {
 
   
   /**
-   * \u6839\u636E\u641C\u7D22\u6761\u4EF6\u83B7\u53D6\u8D5B\u4E8B\u5217\u8868
-   * \u83B7\u5F97\u8D5B\u4E8B\u4FE1\u606F
+   * \u7BA1\u7406\u5458\u5220\u9664zset,\u76EE\u524DcollectionName[ posts timelineNews topNews homepageNews]
+   * \u7BA1\u7406\u5458\u5220\u9664zset,categoryId\u6709\u503C\u65F6\u5220\u9664zset\u4E0B\u542B\u6709categoryId\u7684\u7F13\u5B58\u3002\u6CA1\u6709\u503C\u65F6\uFF0C\u6E05\u7A7Azset
    * @param key key (required)
-   * @return List<TLCompetition>
+   * @param collectionName \u63A5\u53E3\u5BF9\u5E94\u7684cacheName (required)
+   * @param categoryId \u7C7B\u76EEid (optional)
    * @throws ApiException if fails to make API call
    */
-  public List<TLCompetition> getCompetitionList(String key) throws ApiException {
+  public void deleteRedisByKey(String key, String collectionName, String categoryId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'key' is set
     if (key == null) {
-      throw new ApiException(400, "Missing the required parameter 'key' when calling getCompetitionList");
+      throw new ApiException(400, "Missing the required parameter 'key' when calling deleteRedisByKey");
+    }
+    
+    // verify the required parameter 'collectionName' is set
+    if (collectionName == null) {
+      throw new ApiException(400, "Missing the required parameter 'collectionName' when calling deleteRedisByKey");
     }
     
     // create path and map variables
-    String localVarPath = "/timeline/tlcompetitions".replaceAll("\\{format\\}","json");
+    String localVarPath = "/wemedia/redis/cacheCollection".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     Map<String, String> localVarHeaderParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+    
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "collectionName", collectionName));
+    
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "categoryId", categoryId));
     
 
     if (key != null)
@@ -79,8 +88,7 @@ public class TlcompetitionApi {
     String[] localVarAuthNames = new String[] {  };
 
     
-    GenericType<List<TLCompetition>> localVarReturnType = new GenericType<List<TLCompetition>>() {};
-    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+    apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
     
   }
   

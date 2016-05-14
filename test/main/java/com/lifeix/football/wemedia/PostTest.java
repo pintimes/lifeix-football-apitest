@@ -1,79 +1,116 @@
 package com.lifeix.football.wemedia;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-
-import org.junit.Test;
-
-import com.lifeix.football.wemedia.util.CommonUtil;
+import java.util.Random;
 
 import io.swagger.client.ApiException;
+import io.swagger.client.api.NewsApi;
 import io.swagger.client.api.PostApi;
+import io.swagger.client.api.PostsApi;
+import io.swagger.client.model.Author;
 import io.swagger.client.model.Post;
-import io.swagger.client.model.User;
-import junit.framework.Assert;
+import io.swagger.client.model.TimeLineNews;
+import io.swagger.client.model.Video;
 
 /**
- * 1.create 2.get 3.update 4.delete
+ * 
  * 
  * @author gcc
  */
 public class PostTest {
-
-    public static Post getPost(String postId) throws ApiException {
+    /**
+     * 在一个类目下创建一批文章
+     * 
+     * @return
+     * @throws ApiException
+     * @throws ParseException
+     */
+    public static List<Post> createPost(int postNum, List<String> categories, String createDate)
+            throws ApiException, ParseException {
         PostApi api = new PostApi();
+        List<Post> list = new ArrayList<Post>();
+        // 文章的作者
         Post post = new Post();
-        System.out.println("get post begin ....");
-        post = api.getPost(postId);
-        System.out.println("post now is :" + post);
-        return post;
-    }
+        Author createAuthor = AuthorTest.createAuthor("小懂", "xd.jpg");
+        post.setAuthor(createAuthor);
+        // 文章tags
+        post.setCategories(categories);
+        for (int i = 0; i < postNum; i++) {
+            post.setTitle("swagger create title " + i);
+            // 内容和时间不一致
+            int seed = new Random().nextInt(100);
+            // txt
+            if (seed % 3 == 0) {
+                post.setContent("swagger content test");
+            }
+            // video
+            if (seed % 3 == 1) {
+                List<Video> videos = new ArrayList<Video>();
+                Video v = new Video();
+                v.setUrl("url.jpsg");
+                v.setPreview("preview.jpg");
+                v.setTime(120);
+                videos.add(v);
+                post.setVideos(videos);
+            }
+            // image
+            if (seed % 3 == 2) {
+                List<String> images = new ArrayList<String>();
+                images.add("image.jpg");
+                post.setImages(images);
+            }
+            if (seed % 5 == 0) {
+                post.setCreateDate(createDate);
+            }
+            if (seed % 5 == 1) {
+                String date = getUpdatedCreateDate(createDate, 1);
+                post.setCreateDate(date);
+            }
+            if (seed % 5 == 2) {
+                String date = getUpdatedCreateDate(createDate, 2);
+                post.setCreateDate(date);
+            }
+            if (seed % 5 == 3) {
+                String date = getUpdatedCreateDate(createDate, 3);
+                post.setCreateDate(date);
+            }
+            if (seed % 5 == 4) {
+                String date = getUpdatedCreateDate(createDate, 4);
+                post.setCreateDate(date);
+            }
 
-    public static Post updatePost(String userId, Post post) throws ApiException {
-        long flag = System.currentTimeMillis();
-        PostApi api = new PostApi();
-        System.out.println("update post begin ....");
-        post.setTop(false);
-        List<String> images = new ArrayList<String>();
-        images.add("swagger" + flag + ".jpg");
-        images.add("swagger" + flag + ".jpg");
-        post.setImages(images);
-        User author = new User();
-        author.setName("swagger" + flag);
-        author.setPicture("avatar" + flag + ".jpg");
-        post.setAuthor(author);
-
-        post.setDescription(flag + "");
-        Post postsPut = api.postsPut(userId, post);
-        System.out.println("the post have updated is : \n" + postsPut);
-        Post returnPost = api.getPost(post.getId());
-        System.out.println("the post after updated is : \n" + returnPost);
-
-        Assert.assertNotNull(returnPost);
-        Assert.assertEquals(post.getImages(), returnPost.getImages());
-        author.setId(returnPost.getAuthor().getId());
-        if (!returnPost.getAuthor().equals(author)) {
-            Assert.failNotEquals("the return post author is not right ", author, returnPost.getAuthor());
+            Post addPost = api.addPost(ApiKey.key, post);
+            list.add(addPost);
         }
-        return returnPost;
+        return list;
     }
 
-    public static void deletePost(String userId, String postIds) throws ApiException {
-        PostApi api = new PostApi();
-        api.deletePost(userId, postIds);
-        System.out.println("have delete post ....");
+    public static List<TimeLineNews> getTlNews(String categoryId, String startDate, Integer limit)
+            throws ApiException {
+        NewsApi api = new NewsApi();
+        return api.getTimeLineNewsByCategoryId(categoryId, startDate, limit);
     }
 
-    @Test
-    public void allRun() throws ApiException {
-        String userId = CommonUtil.getUserId();
-        Post createPost = CommonUtil.createRandomPost(userId);
-        Post updatedPost = updatePost(createPost.getAuthor().getId(), createPost);
-
-        // 同时删除多个帖子,往Crontroller 的List<String>类型的参数中传值，只需要以“，”分隔
-        Post createPost1 = CommonUtil.createRandomPost(userId);
-        String postIds = updatedPost.getId() + "," + createPost1.getId();
-        deletePost(updatedPost.getAuthor().getId(), postIds);
-        System.out.println("all is end");
+    public static List<Post> getPosts(String categoryId, String startDate, String endDate, String startTime,
+            Integer limit) throws ApiException {
+        PostsApi api = new PostsApi();
+        return api.list(ApiKey.key, null, categoryId, null, startDate, endDate, startTime, limit, null, null);
     }
+
+    private static String getUpdatedCreateDate(String createDate, int decNum) throws ParseException {
+        SimpleDateFormat formate = new SimpleDateFormat("yyyy-MM-dd");
+        Date parse = formate.parse(createDate);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(parse);
+        calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) - decNum);
+        calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) + 1);
+        return calendar.get(Calendar.YEAR) + "-" + calendar.get(Calendar.MONTH) + "-"
+                + +calendar.get(Calendar.DAY_OF_MONTH);
+    }
+
 }

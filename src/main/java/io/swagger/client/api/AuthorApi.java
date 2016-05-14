@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-12T08:03:38.486Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-13T11:51:50.380Z")
 public class AuthorApi {
   private ApiClient apiClient;
 
@@ -38,17 +38,17 @@ public class AuthorApi {
   /**
    * \u83B7\u5F97\u5355\u4E2A\u4F5C\u8005
    * \u67E5\u770B\u5355\u4E2A\u4F5C\u8005\u7684\u4FE1\u606F
-   * @param apiKey key (required)
+   * @param key key (required)
    * @param authorId \u4F5C\u8005\u7684Id (required)
    * @return Author
    * @throws ApiException if fails to make API call
    */
-  public Author getAuthor(String apiKey, String authorId) throws ApiException {
+  public Author getAuthor(String key, String authorId) throws ApiException {
     Object localVarPostBody = null;
     
-    // verify the required parameter 'apiKey' is set
-    if (apiKey == null) {
-      throw new ApiException(400, "Missing the required parameter 'apiKey' when calling getAuthor");
+    // verify the required parameter 'key' is set
+    if (key == null) {
+      throw new ApiException(400, "Missing the required parameter 'key' when calling getAuthor");
     }
     
     // verify the required parameter 'authorId' is set
@@ -67,8 +67,8 @@ public class AuthorApi {
 
     
 
-    if (apiKey != null)
-      localVarHeaderParams.put("apiKey", apiClient.parameterToString(apiKey));
+    if (key != null)
+      localVarHeaderParams.put("key", apiClient.parameterToString(key));
     
 
     

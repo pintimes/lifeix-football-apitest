@@ -7,7 +7,7 @@ import io.swagger.client.ApiClient;
 import io.swagger.client.Configuration;
 import io.swagger.client.Pair;
 
-import io.swagger.client.model.TLCompetition;
+import io.swagger.client.model.TimeLineNews;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,14 +15,14 @@ import java.util.List;
 import java.util.Map;
 
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-05-13T11:51:50.380Z")
-public class TlcompetitionApi {
+public class NewsApi {
   private ApiClient apiClient;
 
-  public TlcompetitionApi() {
+  public NewsApi() {
     this(Configuration.getDefaultApiClient());
   }
 
-  public TlcompetitionApi(ApiClient apiClient) {
+  public NewsApi(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
 
@@ -36,22 +36,25 @@ public class TlcompetitionApi {
 
   
   /**
-   * \u6839\u636E\u641C\u7D22\u6761\u4EF6\u83B7\u53D6\u8D5B\u4E8B\u5217\u8868
-   * \u83B7\u5F97\u8D5B\u4E8B\u4FE1\u606F
-   * @param key key (required)
-   * @return List<TLCompetition>
+   * \u83B7\u53D6\u65F6\u95F4\u8F74\u5F62\u5F0F\u7684\u65B0\u95FB
+   * \u8FD4\u56DETimeLineNews\u5BF9\u8C61
+   * @param categoryId \u7C7B\u76EEId (required)
+   * @param startDate \u67E5\u8BE2\u5F00\u59CB\u65E5\u671F,\u5355\u4F4D\u5929.\u9ED8\u8BA4\u4E3A\u5F53\u5929 (optional)
+   * @param limit \u4E00\u9875\u663E\u793A\u6570\u76EE\uFF0C\u5982\u679C\u4E0D\u4F20\u9ED8\u8BA4=5 (optional, default to 5)
+   * @return List<TimeLineNews>
    * @throws ApiException if fails to make API call
    */
-  public List<TLCompetition> getCompetitionList(String key) throws ApiException {
+  public List<TimeLineNews> getTimeLineNewsByCategoryId(String categoryId, String startDate, Integer limit) throws ApiException {
     Object localVarPostBody = null;
     
-    // verify the required parameter 'key' is set
-    if (key == null) {
-      throw new ApiException(400, "Missing the required parameter 'key' when calling getCompetitionList");
+    // verify the required parameter 'categoryId' is set
+    if (categoryId == null) {
+      throw new ApiException(400, "Missing the required parameter 'categoryId' when calling getTimeLineNewsByCategoryId");
     }
     
     // create path and map variables
-    String localVarPath = "/timeline/tlcompetitions".replaceAll("\\{format\\}","json");
+    String localVarPath = "/wemedia/posts/news/category/{categoryId}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "categoryId" + "\\}", apiClient.escapeString(categoryId.toString()));
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -59,9 +62,11 @@ public class TlcompetitionApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "startDate", startDate));
+    
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "limit", limit));
+    
 
-    if (key != null)
-      localVarHeaderParams.put("key", apiClient.parameterToString(key));
     
 
     
@@ -79,7 +84,7 @@ public class TlcompetitionApi {
     String[] localVarAuthNames = new String[] {  };
 
     
-    GenericType<List<TLCompetition>> localVarReturnType = new GenericType<List<TLCompetition>>() {};
+    GenericType<List<TimeLineNews>> localVarReturnType = new GenericType<List<TimeLineNews>>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
     
   }

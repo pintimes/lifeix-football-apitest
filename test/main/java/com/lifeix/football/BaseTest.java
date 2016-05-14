@@ -2,8 +2,8 @@ package com.lifeix.football;
 
 public class BaseTest {
 
-	public static String getAdminAPIKey(){
-		return null;
-	}
-	
+    public static String getAdminAPIKey() {
+        return "admin";
+    }
+
 }
