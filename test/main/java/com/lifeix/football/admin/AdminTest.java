@@ -12,20 +12,15 @@ import junit.framework.Assert;
 public class AdminTest {
 
 	AdminsApi adminsApi = new AdminsApi();
-	
+
 	@Test
-	public void test() throws ApiException{
+	public void test() throws ApiException {
 		Admin admin = createRandomAdmin();
 		/**
 		 * 注册一个Admin
 		 */
 		Admin registResult = adminsApi.registAdmin(admin);
 		assertResult(registResult, admin);
-		/**
-		 * 获得Admins列表
-		 */
-		List<Admin> adminList = adminsApi.getAdminList(registResult.getKey());
-		Assert.assertNotNull(adminList);
 		/**
 		 * Admin 登录
 		 */
@@ -34,11 +29,20 @@ public class AdminTest {
 		/**
 		 * 获得Admins列表
 		 */
-		List<Admin> adminList2 = adminsApi.getAdminList(loginResult.getKey());
-		Assert.assertNotNull(adminList2);
+		List<Admin> adminList = adminsApi.getAdminList(loginResult.getKey());
+		Assert.assertNotNull(adminList);
+		boolean exist = false;
+		for (Admin temp : adminList) {
+			if (admin.getEmail().equals(temp.getEmail())) {
+				exist = true;
+			}
+		}
+		if (!exist) {
+			Assert.fail();
+		}
 	}
-	
-	private  void assertResult(Admin acture,Admin expect){
+
+	private void assertResult(Admin acture, Admin expect) {
 		Assert.assertNotNull(acture);
 		Assert.assertNotNull(acture.getId());
 		Assert.assertNull(acture.getPassword());
@@ -49,9 +53,9 @@ public class AdminTest {
 
 	private Admin createRandomAdmin() {
 		Admin admin = new Admin();
-		admin.setEmail(System.currentTimeMillis()+"@l99.com");
+		admin.setEmail(System.currentTimeMillis() + "@l99.com");
 		admin.setPassword("123456");
-		admin.setName("guangwei"+System.currentTimeMillis());
+		admin.setName("guangwei" + System.currentTimeMillis());
 		return admin;
 	}
 }
